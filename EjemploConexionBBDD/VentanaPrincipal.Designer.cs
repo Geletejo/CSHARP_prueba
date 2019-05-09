@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaPrincipal));
             this.desplegableActores = new System.Windows.Forms.ComboBox();
             this.desplegableDirectores = new System.Windows.Forms.ComboBox();
             this.desplegablePeliculas = new System.Windows.Forms.ComboBox();
@@ -37,7 +38,7 @@
             // desplegableActores
             // 
             this.desplegableActores.FormattingEnabled = true;
-            this.desplegableActores.Location = new System.Drawing.Point(19, 27);
+            this.desplegableActores.Location = new System.Drawing.Point(12, 27);
             this.desplegableActores.Name = "desplegableActores";
             this.desplegableActores.Size = new System.Drawing.Size(129, 21);
             this.desplegableActores.TabIndex = 0;
@@ -46,7 +47,7 @@
             // desplegableDirectores
             // 
             this.desplegableDirectores.FormattingEnabled = true;
-            this.desplegableDirectores.Location = new System.Drawing.Point(154, 27);
+            this.desplegableDirectores.Location = new System.Drawing.Point(147, 27);
             this.desplegableDirectores.Name = "desplegableDirectores";
             this.desplegableDirectores.Size = new System.Drawing.Size(132, 21);
             this.desplegableDirectores.TabIndex = 1;
@@ -55,7 +56,7 @@
             // desplegablePeliculas
             // 
             this.desplegablePeliculas.FormattingEnabled = true;
-            this.desplegablePeliculas.Location = new System.Drawing.Point(292, 27);
+            this.desplegablePeliculas.Location = new System.Drawing.Point(285, 27);
             this.desplegablePeliculas.Name = "desplegablePeliculas";
             this.desplegablePeliculas.Size = new System.Drawing.Size(132, 21);
             this.desplegablePeliculas.TabIndex = 2;
@@ -64,7 +65,7 @@
             // desplegableGeneros
             // 
             this.desplegableGeneros.FormattingEnabled = true;
-            this.desplegableGeneros.Location = new System.Drawing.Point(430, 27);
+            this.desplegableGeneros.Location = new System.Drawing.Point(423, 27);
             this.desplegableGeneros.Name = "desplegableGeneros";
             this.desplegableGeneros.Size = new System.Drawing.Size(132, 21);
             this.desplegableGeneros.TabIndex = 3;
@@ -74,7 +75,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 412);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(561, 271);
             this.Controls.Add(this.desplegableGeneros);
             this.Controls.Add(this.desplegablePeliculas);
             this.Controls.Add(this.desplegableDirectores);
