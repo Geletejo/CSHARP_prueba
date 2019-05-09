@@ -37,6 +37,7 @@
             // 
             // desplegableActores
             // 
+            this.desplegableActores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.desplegableActores.FormattingEnabled = true;
             this.desplegableActores.Location = new System.Drawing.Point(12, 27);
             this.desplegableActores.Name = "desplegableActores";
@@ -46,6 +47,7 @@
             // 
             // desplegableDirectores
             // 
+            this.desplegableDirectores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.desplegableDirectores.FormattingEnabled = true;
             this.desplegableDirectores.Location = new System.Drawing.Point(147, 27);
             this.desplegableDirectores.Name = "desplegableDirectores";
@@ -55,6 +57,7 @@
             // 
             // desplegablePeliculas
             // 
+            this.desplegablePeliculas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.desplegablePeliculas.FormattingEnabled = true;
             this.desplegablePeliculas.Location = new System.Drawing.Point(285, 27);
             this.desplegablePeliculas.Name = "desplegablePeliculas";
@@ -64,6 +67,8 @@
             // 
             // desplegableGeneros
             // 
+            this.desplegableGeneros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.desplegableGeneros.ForeColor = System.Drawing.SystemColors.WindowText;
             this.desplegableGeneros.FormattingEnabled = true;
             this.desplegableGeneros.Location = new System.Drawing.Point(423, 27);
             this.desplegableGeneros.Name = "desplegableGeneros";

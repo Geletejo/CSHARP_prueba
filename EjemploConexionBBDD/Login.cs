@@ -13,7 +13,7 @@ namespace EjemploConexionBBDD
 {
     public partial class Login : Form
     {
-
+        int intentos = 0;
         public Login()
         {
             InitializeComponent();
@@ -33,12 +33,21 @@ namespace EjemploConexionBBDD
         {
             MySqlConnection conexion = new ConexionBBDD().conecta();
 
+            String texto1 = textBox1.Text;
+            String texto2 = textBox2.Text;
+
             MySqlCommand comando = new MySqlCommand("" +
                 "SELECT * FROM usuarios WHERE" +
-                " usuario = '' OR 1=1; -- " + textBox1.Text +
+                " usuario = '" + textBox1.Text +
                 "' AND pass = '" + textBox2.Text +
                 "' ;", conexion);
 
+            if (texto1.Contains ("'") || texto2.Contains("'"))
+            {
+                MessageBox.Show("Usuario Y/O contraseña incorrecto(s)", "ERROR");
+                intentos++;
+            }
+            else { 
             MySqlDataReader resultado = comando.ExecuteReader();
 
             if (resultado.Read())
@@ -50,6 +59,13 @@ namespace EjemploConexionBBDD
             else
             {
                 MessageBox.Show("Usuario Y/O contraseña incorrecto(s)", "ERROR");
+                    intentos++;
+                }
+        }
+            if(intentos >=3)
+            {
+                MessageBox.Show("Lo has intentado demasiadas veces , sientate, respira y vuelve a intentarlo", "RELÁJATE");
+                this.Close();
             }
         }
     }
