@@ -14,6 +14,8 @@ namespace EjemploConexionBBDD
 {
     public partial class VentanaPrincipal : Form
     {
+
+        private DataTable datos = new DataTable();
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -97,6 +99,34 @@ namespace EjemploConexionBBDD
 
             conexion4.Close();
 
+        }
+
+        private void VentanaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            datos.Clear();
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+
+            String textoBuscador = textBox1.Text;
+
+            MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+            MySqlCommand comando =
+                new MySqlCommand("SELECT movies.* from movies where movies.id = " + textoBuscador
+                , conexionInformacion);
+
+            MySqlDataReader resultado = comando.ExecuteReader();
+
+
+            datos.Load(resultado);
+            dataGridView1.DataSource = datos;
+
+            conexionInformacion.Close();
         }
     }
 }
