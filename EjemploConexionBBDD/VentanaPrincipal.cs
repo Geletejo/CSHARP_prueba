@@ -19,10 +19,8 @@ namespace EjemploConexionBBDD
         public VentanaPrincipal()
         {
             InitializeComponent();
-            rellenaComboAutores();
-            rellenaComboDirectores();
-            rellenaComboPeliculas();
-            rellenaComboGeneros();
+            desplegableComboBox1();
+
         }
 
         //Codigo para que al cerrar este form, se cierre la app
@@ -32,73 +30,11 @@ namespace EjemploConexionBBDD
             Application.Exit();
         }
 
-        private void rellenaComboAutores()
+        private void desplegableComboBox1() //Rellena el comboBox 
         {
-            MySqlConnection conexion = new ConexionBBDD().conecta();
-            MySqlCommand comando = new MySqlCommand("SELECT * FROM actors ORDER BY first_name", conexion);
-            MySqlDataReader resultado = comando.ExecuteReader();
-            while (resultado.Read())
-            {
-                //String id = resultado.GetString(0);
-                String first_name = resultado.GetString("first_name");
-                String last_name = resultado.GetString("last_name");
-                String gender = resultado.GetString("gender");
-
-                desplegableActores.Items.Add( first_name + "  " + last_name);
-            }
-            conexion.Close();
-        }
-        private void rellenaComboDirectores()
-        {
-            MySqlConnection conexion2 = new ConexionBBDD().conecta();
-            MySqlCommand comando2 = new MySqlCommand("SELECT * FROM directors ORDER BY first_name", conexion2);
-            MySqlDataReader resultado2 = comando2.ExecuteReader();
-            while (resultado2.Read())
-            {
-                //String id = resultado2.GetString(0);
-                String first_name = resultado2.GetString("first_name");
-                String last_name = resultado2.GetString("last_name");
-
-                desplegableDirectores.Items.Add( first_name + "  " + last_name);
-            }
-
-            conexion2.Close();
-
-        }
-
-        private void rellenaComboPeliculas()
-        {
-            MySqlConnection conexion3 = new ConexionBBDD().conecta();
-            MySqlCommand comando3 = new MySqlCommand("SELECT * FROM movies ORDER BY year", conexion3);
-            MySqlDataReader resultado3 = comando3.ExecuteReader();
-            while (resultado3.Read())
-            {
-                //String id = resultado3.GetString(0);
-                String name = resultado3.GetString("name");
-                String year = resultado3.GetString("year");
-
-                desplegablePeliculas.Items.Add(year + " -- " + name);
-            }
-
-            conexion3.Close();
-
-        }
-
-        private void rellenaComboGeneros()
-        {
-            MySqlConnection conexion4 = new ConexionBBDD().conecta();
-            MySqlCommand comando4 = new MySqlCommand("SELECT DISTINCT * FROM movies_genres ORDER BY genre", conexion4);
-            MySqlDataReader resultado4 = comando4.ExecuteReader();
-            while (resultado4.Read())
-            {
-                //String id = resultado4.GetString(0);
-                String genre = resultado4.GetString("genre");
-
-                desplegableGeneros.Items.Add(genre);
-            }
-
-            conexion4.Close();
-
+            comboBox1.Items.Add("actors");
+            comboBox1.Items.Add("directors");
+            comboBox1.Items.Add("movies");
         }
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
@@ -106,7 +42,7 @@ namespace EjemploConexionBBDD
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Esto para buscar ID
         {
             datos.Clear();
             dataGridView1.DataSource = null;
@@ -117,7 +53,7 @@ namespace EjemploConexionBBDD
             MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
 
             MySqlCommand comando =
-                new MySqlCommand("SELECT movies.* from movies where movies.id = " + textoBuscador
+                new MySqlCommand("SELECT movies.* from movies where movies.name = '" + textoBuscador +"'"
                 , conexionInformacion);
 
             MySqlDataReader resultado = comando.ExecuteReader();
@@ -128,5 +64,59 @@ namespace EjemploConexionBBDD
 
             conexionInformacion.Close();
         }
-    }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "actors")
+            {
+                String consultaActor = "SELECT actors.first_name, actors.last_name, actors.id "
+                                        + "from actors ORDER BY first_name";
+                comboBox2.Items.Clear();
+                MySqlConnection conectarActores = new ConexionBBDD().conecta();
+                MySqlCommand comando = new MySqlCommand(consultaActor, conectarActores);
+                MySqlDataReader busqueda = comando.ExecuteReader();
+
+                while (busqueda.Read())
+                {
+                    String first_name = busqueda.GetString("first_name");
+                    String last_name = busqueda.GetString("last_name");
+                    String id = busqueda.GetString("id");
+
+                    comboBox2.Items.Add(id + "-" + first_name + " " + last_name);
+
+                }
+                conectarActores.Close();
+
 }
+            }
+        }
+
+
+
+
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    datos.Clear();
+        //    dataGridView1.DataSource = null;
+        //    dataGridView1.Rows.Clear();
+
+        //    String textoBuscador2 = textBox2.Text;
+
+        //    MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+        //    MySqlCommand comando =
+        //        new MySqlCommand("SELECT actors.* from actors where actors.id = " + textoBuscador2
+        //        , conexionInformacion);
+
+        //    MySqlDataReader resultado = comando.ExecuteReader();
+
+
+        //    datos.Load(resultado);
+        //    dataGridView1.DataSource = datos;
+
+        //    conexionInformacion.Close();
+        //}
+
+
+    }
+
