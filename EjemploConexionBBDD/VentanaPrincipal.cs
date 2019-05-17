@@ -55,14 +55,15 @@ namespace EjemploConexionBBDD
             MySqlCommand comando =
                 new MySqlCommand("SELECT movies.* from movies where movies.name LIKE '%" + textoBuscador + "%'"
                 , conexionInformacion);
-
+           
             MySqlDataReader resultado = comando.ExecuteReader();
 
-
             datos.Load(resultado);
+
             dataGridView1.DataSource = datos;
 
             conexionInformacion.Close();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,7 +110,7 @@ namespace EjemploConexionBBDD
             }
             if (comboBox1.Text == "movies")
             {
-                String consultaPelis = "SELECT movies.id, movies.name, movies.year "
+                String consultaPelis = "SELECT movies.id, movies.name, movies.year, movies.alquiladas "
                                         + "from movies ORDER BY name";
                 comboBox2.Items.Clear();
                 MySqlConnection conectarPelis = new ConexionBBDD().conecta();
@@ -121,6 +122,7 @@ namespace EjemploConexionBBDD
                     String id = busqueda.GetString("id");
                     String name = busqueda.GetString("name");
                     String year = busqueda.GetString("year");
+                    String alquiladas = busqueda.GetString("alquiladas");
 
                     comboBox2.Items.Add(id + "-" + name + " " + year + " ");
 
@@ -131,31 +133,5 @@ namespace EjemploConexionBBDD
         }
     }
 
-
-
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    datos.Clear();
-        //    dataGridView1.DataSource = null;
-        //    dataGridView1.Rows.Clear();
-
-        //    String textoBuscador2 = textBox2.Text;
-
-        //    MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
-
-        //    MySqlCommand comando =
-        //        new MySqlCommand("SELECT actors.* from actors where actors.id = " + textoBuscador2
-        //        , conexionInformacion);
-
-        //    MySqlDataReader resultado = comando.ExecuteReader();
-
-
-        //    datos.Load(resultado);
-        //    dataGridView1.DataSource = datos;
-
-        //    conexionInformacion.Close();
-        //}
-
-
-    }
+}
 
