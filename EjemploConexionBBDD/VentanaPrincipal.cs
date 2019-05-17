@@ -42,7 +42,7 @@ namespace EjemploConexionBBDD
 
         }
 
-        private void button1_Click(object sender, EventArgs e) //Esto para buscar ID
+        private void button1_Click(object sender, EventArgs e) //Esto para buscar Peli
         {
             datos.Clear();
             dataGridView1.DataSource = null;
@@ -53,7 +53,7 @@ namespace EjemploConexionBBDD
             MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
 
             MySqlCommand comando =
-                new MySqlCommand("SELECT movies.* from movies where movies.name = '" + textoBuscador +"'"
+                new MySqlCommand("SELECT movies.* from movies where movies.name LIKE '%" + textoBuscador + "%'"
                 , conexionInformacion);
 
             MySqlDataReader resultado = comando.ExecuteReader();
@@ -86,11 +86,50 @@ namespace EjemploConexionBBDD
 
                 }
                 conectarActores.Close();
-
-}
             }
-        }
+            if (comboBox1.Text == "directors")
+            {
+                String consultaDirectores = "SELECT directors.first_name, directors.last_name, directors.id "
+                                        + "from directors ORDER BY first_name";
+                comboBox2.Items.Clear();
+                MySqlConnection conectarDirectores = new ConexionBBDD().conecta();
+                MySqlCommand comando = new MySqlCommand(consultaDirectores, conectarDirectores);
+                MySqlDataReader busqueda = comando.ExecuteReader();
 
+                while (busqueda.Read())
+                {
+                    String first_name = busqueda.GetString("first_name");
+                    String last_name = busqueda.GetString("last_name");
+                    String id = busqueda.GetString("id");
+
+                    comboBox2.Items.Add(id + "-" + first_name + " " + last_name);
+
+                }
+                conectarDirectores.Close();
+            }
+            if (comboBox1.Text == "movies")
+            {
+                String consultaPelis = "SELECT movies.id, movies.name, movies.year "
+                                        + "from movies ORDER BY name";
+                comboBox2.Items.Clear();
+                MySqlConnection conectarPelis = new ConexionBBDD().conecta();
+                MySqlCommand comando = new MySqlCommand(consultaPelis, conectarPelis);
+                MySqlDataReader busqueda = comando.ExecuteReader();
+
+                while (busqueda.Read())
+                {
+                    String id = busqueda.GetString("id");
+                    String name = busqueda.GetString("name");
+                    String year = busqueda.GetString("year");
+
+                    comboBox2.Items.Add(id + "-" + name + " " + year + " ");
+
+                }
+                conectarPelis.Close();
+            }
+            
+        }
+    }
 
 
 
