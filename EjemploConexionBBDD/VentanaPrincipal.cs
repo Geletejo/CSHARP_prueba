@@ -131,6 +131,32 @@ namespace EjemploConexionBBDD
             }
             
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            datos.Clear();
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+
+            if (comboBox1.Text == "actors"){
+
+                MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+                MySqlCommand comando =
+                    new MySqlCommand("SELECT distinct movies.* from movies, roles, actors " +
+                    "where movies.id = roles.movie_id and " +
+                    "roles.actor_id = " + "actors.id"
+                    ,conexionInformacion);
+
+                MySqlDataReader busqueda = comando.ExecuteReader();
+
+                datos.Load(busqueda);
+
+                dataGridView1.DataSource = datos;
+
+                conexionInformacion.Close();
+            }
+        }
     }
 
 }
