@@ -34,7 +34,7 @@ namespace EjemploConexionBBDD
         {
             comboBox1.Items.Add("actors");
             comboBox1.Items.Add("directors");
-            comboBox1.Items.Add("movies");
+            comboBox1.Items.Add("genres");
         }
 
         private void VentanaPrincipal_Load(object sender, EventArgs e)
@@ -108,26 +108,23 @@ namespace EjemploConexionBBDD
                 }
                 conectarDirectores.Close();
             }
-            if (comboBox1.Text == "movies")
+            if (comboBox1.Text == "genres")
             {
-                String consultaPelis = "SELECT movies.id, movies.name, movies.year, movies.alquiladas "
-                                        + "from movies ORDER BY name";
+                String consultaGeneros = "SELECT DISTINCT (genre)"
+                                        + " FROM movies_genres ORDER BY genre";
                 comboBox2.Items.Clear();
-                MySqlConnection conectarPelis = new ConexionBBDD().conecta();
-                MySqlCommand comando = new MySqlCommand(consultaPelis, conectarPelis);
+                MySqlConnection conectarGeneros = new ConexionBBDD().conecta();
+                MySqlCommand comando = new MySqlCommand(consultaGeneros, conectarGeneros);
                 MySqlDataReader busqueda = comando.ExecuteReader();
 
                 while (busqueda.Read())
                 {
-                    String id = busqueda.GetString("id");
-                    String name = busqueda.GetString("name");
-                    String year = busqueda.GetString("year");
-                    String alquiladas = busqueda.GetString("alquiladas");
+                    String genre = busqueda.GetString("genre");
 
-                    comboBox2.Items.Add(id + "-" + name + " " + year + " ");
+                    comboBox2.Items.Add(genre);
 
                 }
-                conectarPelis.Close();
+                conectarGeneros.Close();
             }
             
         }
@@ -143,10 +140,50 @@ namespace EjemploConexionBBDD
                 MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
 
                 MySqlCommand comando =
-                    new MySqlCommand("SELECT distinct movies.* from movies, roles, actors " +
-                    "where movies.id = roles.movie_id and " +
-                    "roles.actor_id = " + "actors.id"
-                    ,conexionInformacion);
+                    new MySqlCommand("SELECT name, alquiladas FROM movies " +
+                    " WHERE id IN(SELECT movie_id FROM roles " +
+                    " WHERE actor_id = '" + comboBox2.SelectedItem.ToString() + "');",
+                     conexionInformacion);
+
+                MySqlDataReader busqueda = comando.ExecuteReader();
+
+                datos.Load(busqueda);
+
+                dataGridView1.DataSource = datos;
+
+                conexionInformacion.Close();
+            }
+
+            if (comboBox1.Text == "directors")
+            {
+
+                MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+                MySqlCommand comando =
+                    new MySqlCommand("SELECT name, alquiladas FROM movies " +
+                    "WHERE id IN(SELECT movie_id FROM movies_directors " +
+                    "WHERE director_id = '" + comboBox1.SelectedItem.ToString() + "');",
+                     conexionInformacion);
+
+                MySqlDataReader busqueda = comando.ExecuteReader();
+
+                datos.Load(busqueda);
+
+                dataGridView1.DataSource = datos;
+
+                conexionInformacion.Close();
+            }
+
+            if (comboBox1.Text == "genres")
+            {
+
+                MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+                MySqlCommand comando =
+                    new MySqlCommand("SELECT name, alquiladas FROM movies " +
+                    "WHERE id IN(SELECT movie_id FROM movies_genres " +
+                    "WHERE genre = '" + comboBox1.SelectedItem.ToString() + "');",
+                     conexionInformacion);
 
                 MySqlDataReader busqueda = comando.ExecuteReader();
 
