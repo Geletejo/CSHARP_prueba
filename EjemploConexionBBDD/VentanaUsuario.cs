@@ -15,6 +15,13 @@ namespace EjemploConexionBBDD
         public VentanaUsuario()
         {
             InitializeComponent();
+            muestraString();
         }
+
+        private void muestraString()
+        {
+            labelNombre.Text = VentanaPrincipal.seleccion;
+        }
+        //VentanaPrincipal VentanaPrincipal = 
     }
 }

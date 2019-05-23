@@ -30,7 +30,9 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelNombre = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelApellido = new System.Windows.Forms.Label();
+            this.labelDNI = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,22 +50,40 @@
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(190, 23);
             this.labelNombre.TabIndex = 1;
-            this.labelNombre.Text = "hgdgf";
+            this.labelNombre.Text = "Nombre";
             // 
-            // label1
+            // labelApellido
             // 
-            this.label1.Location = new System.Drawing.Point(12, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "mhgiuy";
+            this.labelApellido.Location = new System.Drawing.Point(12, 60);
+            this.labelApellido.Name = "labelApellido";
+            this.labelApellido.Size = new System.Drawing.Size(190, 23);
+            this.labelApellido.TabIndex = 2;
+            this.labelApellido.Text = "Apellido";
+            // 
+            // labelDNI
+            // 
+            this.labelDNI.Location = new System.Drawing.Point(12, 95);
+            this.labelDNI.Name = "labelDNI";
+            this.labelDNI.Size = new System.Drawing.Size(190, 23);
+            this.labelDNI.TabIndex = 3;
+            this.labelDNI.Text = "DNI";
+            // 
+            // labelEmail
+            // 
+            this.labelEmail.Location = new System.Drawing.Point(12, 129);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(190, 23);
+            this.labelEmail.TabIndex = 4;
+            this.labelEmail.Text = "Email";
             // 
             // VentanaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 442);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.labelDNI);
+            this.Controls.Add(this.labelApellido);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.pictureBox1);
             this.Name = "VentanaUsuario";
@@ -77,6 +97,8 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelNombre;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelApellido;
+        private System.Windows.Forms.Label labelDNI;
+        private System.Windows.Forms.Label labelEmail;
     }
 }

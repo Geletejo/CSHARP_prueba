@@ -14,7 +14,7 @@ namespace EjemploConexionBBDD
 {
     public partial class VentanaPrincipal : Form
     {
-
+        public static string seleccion = "";
         private DataTable datos = new DataTable();
         public VentanaPrincipal()
         {
@@ -193,14 +193,28 @@ namespace EjemploConexionBBDD
 
                 conexionInformacion.Close();
             }
-        }
 
+        }
+        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Visible = false; //Oculta esta ventana
+            MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+            if (dataGridView1.DataSource != null )
+            {
+                foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+                {
+                    seleccion = cell.Value.ToString();
+                }
+                this.Visible = true; //Oculta esta ventana
             VentanaUsuario ventana = new VentanaUsuario();
             ventana.Visible = true;
+            
+            }
+           
         }
+
+
     }
 
 }
