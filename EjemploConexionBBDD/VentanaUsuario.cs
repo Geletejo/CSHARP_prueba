@@ -21,6 +21,14 @@ namespace EjemploConexionBBDD
         private void muestraString()
         {
             labelNombre.Text = VentanaPrincipal.seleccion;
+
+            mysql
+            string dni
+
+            if (VentanaPrincipal.seleccion == dni)
+            {
+                mysq
+            }
         }
         //VentanaPrincipal VentanaPrincipal = 
     }
