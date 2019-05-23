@@ -162,7 +162,7 @@ namespace EjemploConexionBBDD
                 MySqlCommand comando =
                     new MySqlCommand("SELECT name, alquiladas FROM movies " +
                     "WHERE id IN(SELECT movie_id FROM movies_directors " +
-                    "WHERE director_id = '" + comboBox1.SelectedItem.ToString() + "');",
+                    "WHERE director_id = '" + comboBox2.SelectedItem.ToString() + "');",
                      conexionInformacion);
 
                 MySqlDataReader busqueda = comando.ExecuteReader();
@@ -182,7 +182,7 @@ namespace EjemploConexionBBDD
                 MySqlCommand comando =
                     new MySqlCommand("SELECT name, alquiladas FROM movies " +
                     "WHERE id IN(SELECT movie_id FROM movies_genres " +
-                    "WHERE genre = '" + comboBox1.SelectedItem.ToString() + "');",
+                    "WHERE genre = '" + comboBox2.SelectedItem.ToString() + "');",
                      conexionInformacion);
 
                 MySqlDataReader busqueda = comando.ExecuteReader();
@@ -193,6 +193,13 @@ namespace EjemploConexionBBDD
 
                 conexionInformacion.Close();
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Visible = false; //Oculta esta ventana
+            VentanaUsuario ventana = new VentanaUsuario();
+            ventana.Visible = true;
         }
     }
 
