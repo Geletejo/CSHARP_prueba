@@ -41,7 +41,7 @@ namespace EjemploConexionBBDD
                  conexionInformacion);
 
             MySqlDataReader busqueda = comando.ExecuteReader();
-            byte[] MisDatos = new byte[0];
+         
 
 
             if (busqueda.Read())
@@ -54,6 +54,15 @@ namespace EjemploConexionBBDD
             label6.Text = busqueda.GetString("email");
 
                 conexionInformacion.Close();
+            }
+            try
+            {
+                pictureBox1.Image = Image.FromFile(@"D:\Angel Jimenez\fotos_usuarios\" + BuscarDNI.Text + ".jpg");
+            
+            }
+            catch (Exception ex)
+            {
+
             }
            
         }

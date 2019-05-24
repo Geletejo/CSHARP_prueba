@@ -50,9 +50,9 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Location = new System.Drawing.Point(12, 204);
+            this.panel1.Location = new System.Drawing.Point(12, 194);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(365, 220);
+            this.panel1.Size = new System.Drawing.Size(373, 236);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -85,7 +85,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(263, 53);
+            this.label4.Location = new System.Drawing.Point(174, 53);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 3;
@@ -93,7 +93,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(263, 106);
+            this.label5.Location = new System.Drawing.Point(174, 106);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 13);
             this.label5.TabIndex = 4;
@@ -101,7 +101,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(263, 153);
+            this.label6.Location = new System.Drawing.Point(174, 153);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 5;
@@ -115,9 +115,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(195, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(194, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 149);
+            this.pictureBox1.Size = new System.Drawing.Size(183, 224);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
