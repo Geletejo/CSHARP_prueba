@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace EjemploConexionBBDD
 {
     public partial class VentanaUsuario : Form
     {
+
+        private DataTable datos2 = new DataTable();
+
         public VentanaUsuario()
         {
             InitializeComponent();
@@ -20,16 +24,38 @@ namespace EjemploConexionBBDD
 
         private void muestraString()
         {
-            labelNombre.Text = VentanaPrincipal.seleccion;
+            BuscarDNI.Text = VentanaPrincipal.seleccion;
 
-            mysql
-            string dni
-
-            if (VentanaPrincipal.seleccion == dni)
-            {
-                mysq
-            }
         }
-        //VentanaPrincipal VentanaPrincipal = 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            string dni = BuscarDNI.Text.ToString();
+
+            MySqlConnection conexionInformacion = new ConexionBBDD().conecta();
+
+            MySqlCommand comando =
+                new MySqlCommand("SELECT * FROM usuario WHERE DNI = '" +
+                dni + "'",
+                 conexionInformacion);
+
+            MySqlDataReader busqueda = comando.ExecuteReader();
+            byte[] MisDatos = new byte[0];
+
+
+            if (busqueda.Read())
+            {
+
+            label4.Text = busqueda.GetString("Nombre");
+
+            label5.Text = busqueda.GetString("Apellido");
+
+            label6.Text = busqueda.GetString("email");
+
+                conexionInformacion.Close();
+            }
+           
+        }
     }
 }
